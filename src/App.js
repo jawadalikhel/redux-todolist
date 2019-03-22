@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import Todos from './Todos';
+import axios from 'axios';
+import './index.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Todos from './components/Todos';
+import AddForm from './components/AddForm';
+
+import Post from './components/post';
+import Home from './components/Home';
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      todos: [
-        {id: 1, content: 'buy some milk'},
-        {id: 2, content: 'go to friday meeting'},
-      ]
-    }
-  }
   render() {
     return (
-      <div>
-        <h1 className="center blue-text">Todos</h1>
-        <Todos todos={this.state.todos} />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/:post_id" component={Post} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
